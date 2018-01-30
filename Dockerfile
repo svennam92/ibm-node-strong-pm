@@ -1,8 +1,13 @@
 FROM ibmcom/ibmnode
+
+RUN apt-get update &&\
+  DEBIAN_FRONTEND=noninteractive apt-get upgrade -y &&\
+  apt-get clean &&\
+  rm -Rf /var/cache/*
+
 RUN useradd -ms /bin/bash strong-pm \    
     && chown -R strong-pm:strong-pm /usr/local \    
-    && su strong-pm -c "npm install -g strong-pm && npm cache verify \
-    && su apt-get update"
+    && su strong-pm -c "npm install -g strong-pm"
 
 # Set up some semblance of an environment
 WORKDIR /home/strong-pm
