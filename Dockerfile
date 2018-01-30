@@ -1,7 +1,8 @@
 FROM ibmcom/ibmnode
 RUN useradd -ms /bin/bash strong-pm \    
     && chown -R strong-pm:strong-pm /usr/local \    
-    && su strong-pm -c "npm install -g strong-pm && npm cache verify"
+    && su strong-pm -c "npm install -g strong-pm && npm cache verify \
+    && apt-get update"
 
 # Set up some semblance of an environment
 WORKDIR /home/strong-pm
